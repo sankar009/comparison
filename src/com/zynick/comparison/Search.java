@@ -52,9 +52,10 @@ public class Search extends HttpServlet {
         
         // response back
         PrintWriter out = response.getWriter();
-        response.setContentType("application/json");
-        String resp = callback + "(" + result.toString() + ")";
-        out.println(resp);
+//        response.setContentType("application/json");
+//        String resp = callback + "(" + result.toString() + ")";
+        out.println(result.toString());
+        out.flush();
     }
     
     private Website getSite(String source) {
