@@ -20,6 +20,7 @@ public class Superbuy implements Website {
         Document doc = Jsoup
                 .connect("http://www.superbuy.my/shop/search.aspx?SearchTerm=" + query)
                 .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.120 Safari/535.2")
+                .timeout(10*1000)
                 .get();
 
         Elements rowS = doc
@@ -39,7 +40,7 @@ public class Superbuy implements Website {
 
                 Element aE = col.select("div.MainImage > a").first();
                 String title = aE.attr("title");
-                String price = col.select("span.selectedPrice").first().text().substring(4).replaceAll(",", "");
+                String price = col.select("span.listingBigPriceFont").first().text().substring(3).replaceAll(",", "");
                 double dPrice = Double.parseDouble(price);
                 String img = aE.child(0).attr("src");
                 String url = aE.attr("href");

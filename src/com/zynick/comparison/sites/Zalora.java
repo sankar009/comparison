@@ -17,7 +17,8 @@ public class Zalora implements Website {
     public List<Item> parse(String query, int size) throws IOException {
         
         // request for a page
-        Document doc = Jsoup.connect("http://www.zalora.com.my/catalog/?q=" + query).timeout(15*1000).get();
+        Document doc = Jsoup.connect("http://www.zalora.com.my/catalog/?q=" + query)
+                .timeout(10*1000).get();
         
         Elements listS = doc.getElementById("productsCatalog").children();
         
@@ -35,8 +36,6 @@ public class Zalora implements Website {
             
             result.add(new Item("zalora", title, dPrice, img, url));
         }
-        
-        System.out.println(result);
         
         return result;
     }

@@ -17,7 +17,8 @@ public class Lazada implements Website {
     public List<Item> parse(String query, int size) throws IOException {
 
         // request for a page
-        Document doc = Jsoup.connect("http://www.lazada.com.my/catalog/?q=" + query).get();
+        Document doc = Jsoup.connect("http://www.lazada.com.my/catalog/?q=" + query)
+                .timeout(10*1000).get();
 
         // grab the list
         Elements listS = doc.getElementById("productsCatalog").child(0).getElementsByTag("li");

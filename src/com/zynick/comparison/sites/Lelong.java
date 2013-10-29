@@ -17,7 +17,8 @@ public class Lelong implements Website {
     public List<Item> parse(String query, int size) throws IOException {
 
         // request for a page
-        Document doc = Jsoup.connect("http://list.lelong.com.my/Auc/List/List.asp?TheKeyword=" + query).get();
+        Document doc = Jsoup.connect("http://list.lelong.com.my/Auc/List/List.asp?TheKeyword=" + query)
+                .timeout(10*1000).get();
         
         Element table = doc.getElementById("ListingTable");
         Elements imgListS = table.getElementsByClass("listimage");

@@ -21,7 +21,8 @@ public class Mudah implements Website {
     public List<Item> parse(String query, int size) throws IOException {
 
         // request for a page
-        Document doc = Jsoup.connect("http://www.mudah.my/li?q=" + query).get();
+        Document doc = Jsoup.connect("http://www.mudah.my/li?q=" + query)
+                .timeout(10*1000).get();
         
         Elements listS = doc.select("div.listing_thumbs").first().select("div.list_ads");
         

@@ -6,3 +6,33 @@
     margin-top: 20px;
 }
 
+.footer-space {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+a:hover { 
+    text-decoration: none;
+    color: inherit;
+}
+ 
+a {
+    color: inherit;
+}
+
+.price {
+    font-size: 1.5em;
+    color: #ff4400;
+}
+
+.source {
+    font-style: italic;
+    color: #999999;
+}
+
+.line {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border: 0;
+    border-top: 1px solid #eee;
+}

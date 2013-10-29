@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
 import com.zynick.comparison.sites.Lazada;
 import com.zynick.comparison.sites.Lelong;
+import com.zynick.comparison.sites.Mudah;
 import com.zynick.comparison.sites.Rakuten;
 import com.zynick.comparison.sites.Superbuy;
 import com.zynick.comparison.sites.Website;
@@ -52,13 +55,13 @@ public class Search extends HttpServlet {
         
         // response back
         PrintWriter out = response.getWriter();
-//        response.setContentType("application/json");
-//        String resp = callback + "(" + result.toString() + ")";
-        out.println(result.toString());
+        response.setContentType("application/json");
+        String resp = callback + "(" + result.toString() + ")";
+        out.println(resp);
         out.flush();
     }
     
-    private Website getSite(String source) {
+    private static final Website getSite(String source) {
         if ("lazada".equals(source)) {
             return new Lazada();
         } else if ("lelong".equals(source)) {
@@ -72,6 +75,17 @@ public class Search extends HttpServlet {
         } else {
             return null;
         }
+    }
+    
+    public static void main(String[] args) {
+        String query = "iphone";
+        int size = 5;
+        try { System.out.println(new Lazada().parse(query, size)); } catch (Exception e) { e.printStackTrace(); }
+        try { System.out.println(new Lelong().parse(query, size)); } catch (Exception e) { e.printStackTrace(); }
+//        try { System.out.println(new Mudah().parse(query, size)); } catch (Exception e) { e.printStackTrace(); }
+        try { System.out.println(new Rakuten().parse(query, size)); } catch (Exception e) { e.printStackTrace(); }
+        try { System.out.println(new Superbuy().parse(query, size)); } catch (Exception e) { e.printStackTrace(); }
+        try { System.out.println(new Zalora().parse(query, size)); } catch (Exception e) { e.printStackTrace(); }
     }
 }
 

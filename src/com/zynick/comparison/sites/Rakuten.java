@@ -17,7 +17,8 @@ public class Rakuten implements Website {
     public List<Item> parse(String query, int size) throws IOException {
 
         // request for a page
-        Document doc = Jsoup.connect("http://www.rakuten.com.my/search/" + query).get();
+        Document doc = Jsoup.connect("http://www.rakuten.com.my/search/" + query)
+                .timeout(10*1000).get();
 
         Elements rowS = doc.select("div.b-layout-right div.b-container").get(2).children();
 
