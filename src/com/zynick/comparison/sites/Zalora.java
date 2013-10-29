@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 
 import com.zynick.comparison.Item;
 
+//parsing code works as of 2013-07-06
 public class Zalora implements Website {
     
     @Override
@@ -23,14 +24,13 @@ public class Zalora implements Website {
         Elements listS = doc.getElementById("productsCatalog").children();
         
         // grab the list
-        size = (size < listS.size()) ? size : listS.size(); // size or listS.size, which ever is smaller (max 4)
         ArrayList<Item> result = new ArrayList<Item> (size);
         for (int i = 0; i < size; i++) {
             Element listE = listS.get(i);
             String title = listE.getElementsByClass("itm-title").get(0).text().trim();
             String price = listE.getElementsByClass("itm-price").not(" .old").text().substring(3).replaceAll(",", "");
             double dPrice = Double.parseDouble(price);
-            String img = listE.select("span.itm-imageWrapper img").first().attr("src");
+            String img = listE.select("span.itm-imageWrapper img").first().attr("data-src");
             String url = listE.select("a.itm-link").first().attr("href");
             url = "http://www.zalora.com.my" + url;
             

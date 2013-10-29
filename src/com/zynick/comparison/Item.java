@@ -2,8 +2,6 @@ package com.zynick.comparison;
 
 import org.json.simple.JSONObject;
 
-import com.zynick.util.DecimalFormatter;
-
 public class Item {
 
     private String source;
@@ -48,7 +46,7 @@ public class Item {
         return new StringBuilder().append("{")
                 .append("\"source\":\"").append(JSONObject.escape(source)).append("\",")
                 .append("\"title\":\"").append(JSONObject.escape(title)).append("\",")
-                .append("\"price\":\"").append(DecimalFormatter.INSTANCE.format(price)).append("\",")
+                .append("\"price\":").append(price).append(",")
                 .append("\"img\":\"").append(JSONObject.escape(img)).append("\",")
                 .append("\"link\":\"").append(JSONObject.escape(link)).append("\"}")
                 .toString();
