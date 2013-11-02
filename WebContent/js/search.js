@@ -10,9 +10,9 @@ $("#search-form").submit(function(event) {
     // avoid form to submit normally
     event.preventDefault();
 
-    var $form = $(this);
-    var url = $form.attr("action");
-    var query = $("#query").val();
+    var url = $(this).attr("action");
+    var query = encodeURI($("#query").val());
+    var size = 5;
     
     $('#result').fadeOut("slow");
     
@@ -20,33 +20,33 @@ $("#search-form").submit(function(event) {
         $.ajax({
             type:"GET", 
             url:url, 
-            data: {query:query, size:5, source:"Lazada"}, 
+            data: {query:query, size:size, source:"Lazada"}, 
             dataType:"jsonp", 
             success:function(data) { NProgress.inc(); }}),
         $.ajax({
             type:"GET", 
             url:url, 
-            data: {query:query, size:5, source:"Lelong"}, 
+            data: {query:query, size:size, source:"Lelong"}, 
             dataType:"jsonp", 
             success:function(data) { NProgress.inc(); }}),
         $.ajax({
             type:"GET", 
             url:url, 
-            data:{query:query, size:5, source:"Rakuten"}, 
+            data:{query:query, size:size, source:"Rakuten"}, 
             dataType:"jsonp", 
             success:function(data) { NProgress.inc(); }}),
         $.ajax({
             type:"GET", 
             url:url, 
-            data:{query:query, size:5, source:"Superbuy"}, 
+            data:{query:query, size:size, source:"Superbuy"}, 
             dataType:"jsonp", 
             success:function(data) { NProgress.inc(); }}),
         $.ajax({
             type:"GET", 
             url:url, 
-            data:{query:query, size:5, source:"Zalora"}, 
+            data:{query:query, size:size, source:"Zalora"}, 
             dataType:"jsonp", 
-            success:function(data) { NProgress.inc(); }})
+            success:function(data) { NProgress.inc(); return []; }})
             
     ).done(function(lazada, lelong, rakuten, superbuy, zalora) {
         NProgress.inc();
@@ -56,11 +56,11 @@ $("#search-form").submit(function(event) {
                          .concat(rakuten[0])
                          .concat(superbuy[0])
                          .concat(zalora[0]);
-        list.sort(SortByPrice);
         
         // generating output to put into result div
         var output = '';
-        if (list.length != 0) {
+        if (list != undefined && list.length != 0) {
+            list.sort(SortByPrice);
             for (var i = 0; i < list.length; i += 4) {
                 output += '<div class="row">';
                 for (var j = 0; i + j < list.length && j < 4; j++) {
@@ -95,8 +95,7 @@ $("#search-form").submit(function(event) {
         }
         
         // display result
-        $('#result').html(output);
-        $('#result').fadeIn("fast");
+        $('#result').html(output).fadeIn();
         
         NProgress.done();
     });

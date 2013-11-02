@@ -2,7 +2,6 @@ package com.zynick.comparison;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +31,6 @@ public class Search extends HttpServlet {
         Website site = getSite(source);
         if (site != null) {
             try {
-                query = URLEncoder.encode(query, "UTF-8");
                 int size = Integer.parseInt(sizeStr);
                 
                 // get result
@@ -41,13 +39,17 @@ public class Search extends HttpServlet {
             } catch (Exception ex) {
                 // doesn't matter.
                 System.out.println(ex.getClass().getSimpleName() + ": " + ex.getMessage());
-                System.out.println("\t" + ex.getStackTrace()[0]);
+                StackTraceElement[] st = ex.getStackTrace();
+                System.out.println("\t" + st[0]);
+                if (st.length > 1) System.out.println("\t" + st[1]);
+                if (st.length > 2) System.out.println("\t" + st[2]);
             }
         }
         
         // response back
-        PrintWriter out = response.getWriter();
         response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
         String resp = callback + "(" + result.toString() + ")";
         out.println(resp);
         out.flush();
