@@ -14,10 +14,9 @@ $("#search-form").submit(function(event) {
     var url = $form.attr("action");
     var query = $("#query").val();
     
-    $('#result').html('');
+    $('#result').fadeOut("slow");
     
     $.when(
-        // TODO dunit to use jsonp la..
         $.ajax({
             type:"GET", 
             url:url, 
@@ -58,34 +57,43 @@ $("#search-form").submit(function(event) {
                          .concat(superbuy[0])
                          .concat(zalora[0]);
         list.sort(SortByPrice);
-
+        
         // generating output to put into result div
         var output = '';
-        for (var i = 0; i < list.length; i += 4) {
-            output += '<div class="row">';
-            for (var j = 0; i + j < list.length && j < 4; j++) {
-                var title = (list[i+j].title.length < 80) 
-                        ? list[i+j].title 
-                        : list[i+j].title.substring(0, 75) + "...";
-                output += '<div class="col-lg-3">'
-                       + '  <a href="' + list[i+j].link + '" target="_blank">'
-                       + '    <div class="panel panel-default">'
-                       + '      <div class="panel-body">'
-                       + '        <div><img src="' + list[i+j].img + '" height="100%" width="100%" /></div>'
-                       + '        <div class="space">' + title + '</div>'
-                       + '        <hr class="line">'
-                       + '        <div class="pull-right price">RM ' + list[i+j].price.toFixed(2) + '</div>'
-                       + '        <div class="pull-left source">' + list[i+j].source + '</div>'
-                       + '      </div>'
-                       + '    </div>'
-                       + '  </a>'
-                       + '</div>';
+        if (list.length != 0) {
+            for (var i = 0; i < list.length; i += 4) {
+                output += '<div class="row">';
+                for (var j = 0; i + j < list.length && j < 4; j++) {
+                    var title = (list[i+j].title.length < 80) 
+                            ? list[i+j].title 
+                            : list[i+j].title.substring(0, 75) + "...";
+                    output += '<div class="col-lg-3">'
+                           + '  <a href="' + list[i+j].link + '" target="_blank">'
+                           + '    <div class="panel panel-default">'
+                           + '      <div class="panel-body">'
+                           + '        <div><img src="' + list[i+j].img + '" height="100%" width="100%" /></div>'
+                           + '        <div class="space">' + title + '</div>'
+                           + '        <hr class="line">'
+                           + '        <div class="pull-right price">RM ' + list[i+j].price.toFixed(2) + '</div>'
+                           + '        <div class="pull-left source">' + list[i+j].source + '</div>'
+                           + '      </div>'
+                           + '    </div>'
+                           + '  </a>'
+                           + '</div>';
+                }
+                output += '</div>';
             }
-            output += '</div>';
+        } else {
+            output += '<div class="panel panel-default">'
+                   + '  <div class="panel-body no-result">'
+                   + '    Nothing found :( Perhaps try different keywords?'
+                   + '  </div>'
+                   + '</div>';
         }
         
         // display result
         $('#result').html(output);
+        $('#result').fadeIn("fast");
         
         NProgress.done();
     });
