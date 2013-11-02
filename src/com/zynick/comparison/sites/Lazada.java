@@ -19,6 +19,7 @@ public class Lazada implements Website {
 
         // request for a page
         Document doc = Jsoup.connect("http://www.lazada.com.my/catalog/?q=" + query)
+                .userAgent("zynick-bot (me@zynick.com http://zynick.com)")  // be an ethical crawler :) 
                 .timeout(10*1000).get();
 
         // grab the list

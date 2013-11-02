@@ -19,6 +19,7 @@ public class Lelong implements Website {
 
         // request for a page
         Document doc = Jsoup.connect("http://list.lelong.com.my/Auc/List/List.asp?TheKeyword=" + query)
+                .userAgent("zynick-bot (me@zynick.com http://zynick.com)")  // be an ethical crawler :) 
                 .timeout(10*1000).get();
         
         Element table = doc.getElementById("ListingTable");

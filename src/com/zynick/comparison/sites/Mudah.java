@@ -22,6 +22,7 @@ public class Mudah implements Website {
 
         // request for a page
         Document doc = Jsoup.connect("http://www.mudah.my/li?q=" + query)
+                .userAgent("zynick-bot (me@zynick.com http://zynick.com)")  // be an ethical crawler :) 
                 .timeout(10*1000).get();
         
         Elements listS = doc.select("div.listing_thumbs").first().select("div.list_ads");

@@ -19,6 +19,7 @@ public class Rakuten implements Website {
 
         // request for a page
         Document doc = Jsoup.connect("http://www.rakuten.com.my/search/" + query)
+                .userAgent("zynick-bot (me@zynick.com http://zynick.com)")  // be an ethical crawler :) 
                 .timeout(10*1000).get();
 
         Elements rowS = doc.select("div.b-layout-right div.b-container").get(2).children();

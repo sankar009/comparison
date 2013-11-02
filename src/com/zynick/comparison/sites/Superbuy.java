@@ -20,8 +20,7 @@ public class Superbuy implements Website {
         // request for a page
         Document doc = Jsoup
                 .connect("http://www.superbuy.my/shop/search.aspx?SearchTerm=" + query)
-                // TODO change user agent to zynick robot
-                .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.120 Safari/535.2")
+                .userAgent("zynick-bot (me@zynick.com http://zynick.com)")  // be an ethical crawler :) 
                 .timeout(10*1000)
                 .get();
 
