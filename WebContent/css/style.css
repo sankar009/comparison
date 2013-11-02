@@ -1,14 +1,43 @@
-.top {
-    margin-top: 100px;
+
+// to be removed
+.line {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border: 0;
+    border-top: 1px solid #eee;
 }
 
-.space {
-    margin-top: 20px;
+.top {
+    margin-top: 100px;
 }
 
 .footer-space {
     margin-top: 40px;
     margin-bottom: 30px;
+}
+
+.margin1 {
+    margin-top: 46px;
+}
+
+.margin2 {
+    margin-top: 10px;
+}
+
+.source {
+    font-style: italic;
+    color: #999999;
+}
+
+.price {
+    font-size: 1.7em;
+    color: #ff0044;
+}
+
+.no-result {
+    font-size: 1.5em;
+    font-style: italic;
+    color: #666666;
 }
 
 a:hover { 
@@ -18,27 +47,4 @@ a:hover {
  
 a {
     color: inherit;
-}
-
-.price {
-    font-size: 1.5em;
-    color: #ff0044;
-}
-
-.source {
-    font-style: italic;
-    color: #999999;
-}
-
-.line {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    border: 0;
-    border-top: 1px solid #eee;
-}
-
-.no-result {
-    font-size: 1.5em;
-    font-style: italic;
-    color: #666666;
 }

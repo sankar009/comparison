@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
 //parsing code works as of 2013-07-06
@@ -19,8 +20,8 @@ public class Lazada implements Website {
 
         // request for a page
         Document doc = Jsoup.connect("http://www.lazada.com.my/catalog/?q=" + query)
-                .userAgent("zynick-bot (me@zynick.com http://zynick.com)")  // be an ethical crawler :) 
-                .timeout(10*1000).get();
+                            .userAgent(Constant.USER_AGENT) 
+                            .timeout(10*1000).get();
 
         // grab the list
         Elements listS = doc.getElementById("productsCatalog").child(0).getElementsByTag("li");
@@ -37,7 +38,7 @@ public class Lazada implements Website {
             String link = listE.select("a.itm-link").first().attr("href");
             link = "http://www.lazada.com.my" + link;
 
-            result.add(new Item("lazada", title, dPrice, img, link));
+            result.add(new Item("Lazada", title, dPrice, img, link));
         }
 
         return result;

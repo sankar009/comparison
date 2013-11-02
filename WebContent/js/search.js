@@ -64,18 +64,21 @@ $("#search-form").submit(function(event) {
             for (var i = 0; i < list.length; i += 4) {
                 output += '<div class="row">';
                 for (var j = 0; i + j < list.length && j < 4; j++) {
-                    var title = (list[i+j].title.length < 80) 
+                    var title = (list[i+j].title.length < 65) 
                             ? list[i+j].title 
-                            : list[i+j].title.substring(0, 75) + "...";
+                            : list[i+j].title.substring(0, 60) + "...";
                     output += '<div class="col-lg-3">'
                            + '  <a href="' + list[i+j].link + '" target="_blank">'
                            + '    <div class="panel panel-default">'
                            + '      <div class="panel-body">'
-                           + '        <div><img src="' + list[i+j].img + '" height="100%" width="100%" /></div>'
-                           + '        <div class="space">' + title + '</div>'
-                           + '        <hr class="line">'
-                           + '        <div class="pull-right price">RM ' + list[i+j].price.toFixed(2) + '</div>'
-                           + '        <div class="pull-left source">' + list[i+j].source + '</div>'
+                           + '        <div>'
+                           + '          <div class="pull-left source">' + list[i+j].source + '</div>'
+                           + '          <div class="pull-right price">RM ' + list[i+j].price.toFixed(2) + '</div>'
+                           + '        </div>'
+                           + '        <div class="margin1">'
+                           + '          <img src="' + list[i+j].img + '" style="width:100%;height:100%">'
+                           + '        </div>'
+                           + '        <div class="margin2">' + title + '</div>'
                            + '      </div>'
                            + '    </div>'
                            + '  </a>'

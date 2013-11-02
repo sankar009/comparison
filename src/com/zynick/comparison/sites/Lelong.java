@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
 //parsing code works as of 2013-07-06
@@ -19,8 +20,8 @@ public class Lelong implements Website {
 
         // request for a page
         Document doc = Jsoup.connect("http://list.lelong.com.my/Auc/List/List.asp?TheKeyword=" + query)
-                .userAgent("zynick-bot (me@zynick.com http://zynick.com)")  // be an ethical crawler :) 
-                .timeout(10*1000).get();
+                            .userAgent(Constant.USER_AGENT) 
+                            .timeout(10*1000).get();
         
         Element table = doc.getElementById("ListingTable");
         Elements imgListS = table.getElementsByClass("listimage");
@@ -42,7 +43,7 @@ public class Lelong implements Website {
             double dPrice = Double.parseDouble(price);
             String url = aE.attr("href"); 
             
-            result.add(new Item("lelong", title, dPrice, img, url));
+            result.add(new Item("Lelong", title, dPrice, img, url));
         }
         
         return result;

@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
 //parsing code works as of 2013-07-06
@@ -19,8 +20,8 @@ public class Rakuten implements Website {
 
         // request for a page
         Document doc = Jsoup.connect("http://www.rakuten.com.my/search/" + query)
-                .userAgent("zynick-bot (me@zynick.com http://zynick.com)")  // be an ethical crawler :) 
-                .timeout(10*1000).get();
+                            .userAgent(Constant.USER_AGENT)   
+                            .timeout(10*1000).get();
 
         Elements rowS = doc.select("div.b-layout-right div.b-container").get(2).children();
 
@@ -44,7 +45,7 @@ public class Rakuten implements Website {
                 String url = aE.attr("href");
                 url = "http://www.rakuten.com.my" + url;
 
-                result.add(new Item("rakuten", title, dPrice, img, url));
+                result.add(new Item("Rakuten", title, dPrice, img, url));
 
                 count++;
             }

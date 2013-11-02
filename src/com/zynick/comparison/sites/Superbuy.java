@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
 //parsing code works as of 2013-07-06
@@ -18,11 +19,9 @@ public class Superbuy implements Website {
     public List<Item> parse(String query, int size) throws IOException {
 
         // request for a page
-        Document doc = Jsoup
-                .connect("http://www.superbuy.my/shop/search.aspx?SearchTerm=" + query)
-                .userAgent("zynick-bot (me@zynick.com http://zynick.com)")  // be an ethical crawler :) 
-                .timeout(10*1000)
-                .get();
+        Document doc = Jsoup.connect("http://www.superbuy.my/shop/search.aspx?SearchTerm=" + query)
+                            .userAgent(Constant.USER_AGENT) 
+                            .timeout(10*1000).get();
 
         Elements rowS = doc
                 .select("div#content > table > tbody > tr > td > table > tbody")
@@ -47,7 +46,7 @@ public class Superbuy implements Website {
                 String url = aE.attr("href");
                 url = "http://www.superbuy.my/shop/" + url;
 
-                result.add(new Item("superbuy", title, dPrice, img, url));
+                result.add(new Item("Superbuy", title, dPrice, img, url));
 
                 count++;
             }
