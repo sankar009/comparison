@@ -8,14 +8,6 @@
     <servlet-name>Servlet to parse data</servlet-name>
     <url-pattern>/search</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>Servlet Name For Demo</servlet-name>
-    <servlet-class>com.zynick.comparison.Demo</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Servlet Name For Demo</servlet-name>
-    <url-pattern>/demo</url-pattern>
-  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>

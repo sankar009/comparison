@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
-//parsing code works as of 2013-07-06
+// parsing code works as of 2013-07-06
 public class Rakuten implements Website {
 
     @Override
@@ -20,8 +20,8 @@ public class Rakuten implements Website {
 
         // request for a page
         Document doc = Jsoup.connect("http://www.rakuten.com.my/search/" + query)
-                            .userAgent(Constant.USER_AGENT)   
-                            .timeout(10*1000).get();
+                            .userAgent(Constant.HTTP_USER_AGENT)   
+                            .timeout(Constant.HTTP_TIMEOUT).get();
 
         Elements rowS = doc.select("div.b-layout-right div.b-container").get(2).children();
 
@@ -46,7 +46,6 @@ public class Rakuten implements Website {
                 url = "http://www.rakuten.com.my" + url;
 
                 result.add(new Item("Rakuten", title, dPrice, img, url));
-
                 count++;
             }
         }

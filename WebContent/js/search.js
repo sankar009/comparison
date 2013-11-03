@@ -4,58 +4,64 @@ function SortByPrice(a, b) {
 }
 
 $("#search-form").submit(function(event) {
-
+    
+    event.preventDefault();  // avoid form to submit normally
+    
     NProgress.start();
     
-    // avoid form to submit normally
-    event.preventDefault();
-
+    $('#result').fadeOut(1000);
+    
     var url = $(this).attr("action");
     var query = encodeURI($("#query").val());
-    var size = 5;
-    
-    $('#result').fadeOut("slow");
+    var size = 3;
     
     $.when(
-        $.ajax({
-            type:"GET", 
-            url:url, 
-            data: {query:query, size:size, source:"Lazada"}, 
-            dataType:"jsonp", 
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data: {query:query, size:size, source:"Lazada"},
             success:function(data) { NProgress.inc(); }}),
-        $.ajax({
-            type:"GET", 
-            url:url, 
-            data: {query:query, size:size, source:"Lelong"}, 
-            dataType:"jsonp", 
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data: {query:query, size:size, source:"Lelong"},
             success:function(data) { NProgress.inc(); }}),
-        $.ajax({
-            type:"GET", 
-            url:url, 
-            data:{query:query, size:size, source:"Rakuten"}, 
-            dataType:"jsonp", 
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"Rakuten"},
             success:function(data) { NProgress.inc(); }}),
-        $.ajax({
-            type:"GET", 
-            url:url, 
-            data:{query:query, size:size, source:"Superbuy"}, 
-            dataType:"jsonp", 
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"Superbuy"},
             success:function(data) { NProgress.inc(); }}),
-        $.ajax({
-            type:"GET", 
-            url:url, 
-            data:{query:query, size:size, source:"Zalora"}, 
-            dataType:"jsonp", 
-            success:function(data) { NProgress.inc(); return []; }})
-            
-    ).done(function(lazada, lelong, rakuten, superbuy, zalora) {
-        NProgress.inc();
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"Zalora"},
+            success:function(data) { NProgress.inc(); }}),
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"Expansys"},
+            success:function(data) { NProgress.inc(); }}),
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"MobileMegamall"},
+            success:function(data) { NProgress.inc(); }}),
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"IPMart"},
+            success:function(data) { NProgress.inc(); }}),
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"YouBeli"},
+            success:function(data) { NProgress.inc(); }}),
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"SengHeng"},
+            success:function(data) { NProgress.inc(); }}),
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"Retrons"},
+            success:function(data) { NProgress.inc(); }}),
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"Shashinki"},
+            success:function(data) { NProgress.inc(); }})
+
+    ).done(function(lazada, lelong, rakuten, superbuy, zalora, 
+                    expansys, mmegamall, ipmart, youbeli, sengheng,
+                    retrons, shashinki) {
         
         // combine data
-        var list = lazada[0].concat(lelong[0])
-                         .concat(rakuten[0])
-                         .concat(superbuy[0])
-                         .concat(zalora[0]);
+        var list = lazada[0].concat(lelong[0]).concat(rakuten[0])
+                  .concat(superbuy[0]).concat(zalora[0]).concat(expansys[0])
+                  .concat(mmegamall[0]).concat(ipmart[0]).concat(youbeli[0])
+                  .concat(sengheng[0]).concat(retrons[0]).concat(shashinki[0]);
         
         // generating output to put into result div
         var output = '';
@@ -68,7 +74,7 @@ $("#search-form").submit(function(event) {
                             ? list[i+j].title 
                             : list[i+j].title.substring(0, 60) + "...";
                     output += '<div class="col-lg-3">'
-                           + '  <a href="' + list[i+j].link + '" target="_blank">'
+                           + '  <a href="' + list[i+j].url + '" target="_blank">'
                            + '    <div class="panel panel-default">'
                            + '      <div class="panel-body">'
                            + '        <div>'

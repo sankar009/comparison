@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
-//parsing code works as of 2013-07-06
+// parsing code works as of 2013-07-06
 public class Lazada implements Website {
 
     @Override
@@ -20,8 +20,8 @@ public class Lazada implements Website {
 
         // request for a page
         Document doc = Jsoup.connect("http://www.lazada.com.my/catalog/?q=" + query)
-                            .userAgent(Constant.USER_AGENT) 
-                            .timeout(10*1000).get();
+                            .userAgent(Constant.HTTP_USER_AGENT) 
+                            .timeout(Constant.HTTP_TIMEOUT).get();
 
         // grab the list
         Elements listS = doc.getElementById("productsCatalog").child(0).getElementsByTag("li");
@@ -35,10 +35,10 @@ public class Lazada implements Website {
             String price = priceE.childNodes().get(0).toString().trim().substring(3).replaceAll(",", "");
             double dPrice = Double.parseDouble(price);
             String img = listE.getElementsByTag("img").get(0).attr("src");
-            String link = listE.select("a.itm-link").first().attr("href");
-            link = "http://www.lazada.com.my" + link;
+            String url = listE.select("a.itm-link").first().attr("href");
+            url = "http://www.lazada.com.my" + url;
 
-            result.add(new Item("Lazada", title, dPrice, img, link));
+            result.add(new Item("Lazada", title, dPrice, img, url));
         }
 
         return result;

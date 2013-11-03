@@ -1,12 +1,12 @@
 package com.zynick.comparison;
 
+import static org.junit.Assert.*;
+
+import java.util.List;
+
 import org.junit.Test;
 
-import com.zynick.comparison.sites.Lazada;
-import com.zynick.comparison.sites.Lelong;
-import com.zynick.comparison.sites.Rakuten;
-import com.zynick.comparison.sites.Superbuy;
-import com.zynick.comparison.sites.Zalora;
+import com.zynick.comparison.sites.*;
 
 /**
  * This doesn't test Website interface, instead it test all the sites and make
@@ -18,39 +18,90 @@ import com.zynick.comparison.sites.Zalora;
  * 
  */
 public class WebsiteTest {
+    
+    public static final String QUERY = "iphone";
+    public static final int SIZE = 3;
 
-    /**
-     * As long as it doesn't throw exception, the test is consider success.
-     * 
-     * No Assertion is required :p
-     */
+    @Test
+    public void testExpansys() throws Exception {
+        List<Item> list = new Expansys().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
+    }
+    
+    @Test
+    public void testIPMart() throws Exception {
+        List<Item> list = new IPMart().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
+    }
+    
     @Test
     public void testLazada() throws Exception {
-        new Lazada().parse("iphone", 5);
+        List<Item> list = new Lazada().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
     }
 
     @Test
     public void testLelong() throws Exception {
-        new Lelong().parse("iphone", 5);
+        List<Item> list = new Lelong().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
+    }
+
+    @Test
+    public void testMobileMegamall() throws Exception {
+        List<Item> list = new MobileMegamall().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
     }
 
     @Test
     public void testRakuten() throws Exception {
-        new Rakuten().parse("iphone", 5);
+        List<Item> list = new Rakuten().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
+    }
+
+    @Test
+    public void testRetrons() throws Exception {
+        List<Item> list = new Retrons().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
+    }
+
+    @Test
+    public void testSengHeng() throws Exception {
+        List<Item> list = new SengHeng().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
+    }
+
+    @Test
+    public void testShashinki() throws Exception {
+        List<Item> list = new Shashinki().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
     }
 
     @Test
     public void testSuperbuy() throws Exception {
-        new Superbuy().parse("iphone", 5);
+        List<Item> list = new Superbuy().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
+    }
+
+    @Test
+    public void testYouBeli() throws Exception {
+        List<Item> list = new YouBeli().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
     }
 
     @Test
     public void testZalora() throws Exception {
-        new Zalora().parse("iphone", 5);
+        List<Item> list = new Zalora().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
     }
     
     
-    
-    
-
+    private static boolean validateUrlAndImg(List<Item> list) {
+        if (list.size() != 0) {
+            Item item = list.get(0);
+            return item.getUrl().startsWith("http")
+                    && item.getImg().startsWith("http");
+        } else {
+            return true; // nothing to validate
+        }
+    }
 }

@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
-//parsing code works as of 2013-07-06
+// parsing code works as of 2013-07-06
 public class Zalora implements Website {
     
     @Override
@@ -20,8 +20,8 @@ public class Zalora implements Website {
         
         // request for a page
         Document doc = Jsoup.connect("http://www.zalora.com.my/catalog/?q=" + query)
-                            .userAgent(Constant.USER_AGENT) 
-                            .timeout(10*1000).get();
+                            .userAgent(Constant.HTTP_USER_AGENT) 
+                            .timeout(Constant.HTTP_TIMEOUT).get();
         
         Elements listS = doc.getElementById("productsCatalog").children();
         

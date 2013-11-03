@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
-//parsing code works as of 2013-07-06
+// parsing code works as of 2013-07-06
 public class Superbuy implements Website {
 
     @Override
@@ -20,8 +20,8 @@ public class Superbuy implements Website {
 
         // request for a page
         Document doc = Jsoup.connect("http://www.superbuy.my/shop/search.aspx?SearchTerm=" + query)
-                            .userAgent(Constant.USER_AGENT) 
-                            .timeout(10*1000).get();
+                            .userAgent(Constant.HTTP_USER_AGENT) 
+                            .timeout(Constant.HTTP_TIMEOUT).get();
 
         Elements rowS = doc
                 .select("div#content > table > tbody > tr > td > table > tbody")
@@ -47,7 +47,6 @@ public class Superbuy implements Website {
                 url = "http://www.superbuy.my/shop/" + url;
 
                 result.add(new Item("Superbuy", title, dPrice, img, url));
-
                 count++;
             }
         }

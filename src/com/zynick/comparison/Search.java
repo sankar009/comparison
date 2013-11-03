@@ -39,10 +39,7 @@ public class Search extends HttpServlet {
             } catch (Exception ex) {
                 // doesn't matter.
                 System.out.println(ex.getClass().getSimpleName() + ": " + ex.getMessage());
-                StackTraceElement[] st = ex.getStackTrace();
-                System.out.println("\t" + st[0]);
-                if (st.length > 1) System.out.println("\t" + st[1]);
-                if (st.length > 2) System.out.println("\t" + st[2]);
+                System.out.println("\t" + site.getClass().getSimpleName() + ": " + ex.getStackTrace()[0]);
             }
         }
         

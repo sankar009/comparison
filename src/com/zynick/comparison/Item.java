@@ -8,14 +8,14 @@ public class Item {
     private String title;
     private double price;
     private String img;
-    private String link;
+    private String url;
 
-    public Item(String source, String title, double price, String img, String link) {
+    public Item(String source, String title, double price, String img, String url) {
         this.source = source;
         this.title = title;
         this.price = price;
         this.img = img;
-        this.link = link;
+        this.url = url;
     }
 
     public String getSource() {
@@ -34,8 +34,8 @@ public class Item {
         return img;
     }
     
-    public String getLink() {
-        return link;
+    public String getUrl() {
+        return url;
     }
 
     /**
@@ -48,7 +48,7 @@ public class Item {
                 .append("\"title\":\"").append(JSONObject.escape(title)).append("\",")
                 .append("\"price\":").append(price).append(",")
                 .append("\"img\":\"").append(JSONObject.escape(img)).append("\",")
-                .append("\"link\":\"").append(JSONObject.escape(link)).append("\"}")
+                .append("\"url\":\"").append(JSONObject.escape(url)).append("\"}")
                 .toString();
     }
 }

@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
-//parsing code works as of 2013-07-06
+// parsing code works as of 2013-07-06
 public class Mudah implements Website {
     
     /**
@@ -23,8 +23,8 @@ public class Mudah implements Website {
 
         // request for a page
         Document doc = Jsoup.connect("http://www.mudah.my/li?q=" + query)
-                            .userAgent(Constant.USER_AGENT) 
-                            .timeout(10*1000).get();
+                            .userAgent(Constant.HTTP_USER_AGENT) 
+                            .timeout(Constant.HTTP_TIMEOUT).get();
         
         Elements listS = doc.select("div.listing_thumbs").first().select("div.list_ads");
         
@@ -41,12 +41,12 @@ public class Mudah implements Website {
             
             Element listE = list.select("li.listing_ads_title").first();
             String title = listE.child(0).text();
-            String link = listE.child(0).attr("href");
+            String url = listE.child(0).attr("href");
             String price = listE.text();
             price = price.substring(price.lastIndexOf("RM") + 2).trim().replaceAll(" ", "");
             int dPrice = Integer.parseInt(price);
             
-            result.add(new Item("Mudah", title, dPrice, img, link));
+            result.add(new Item("Mudah", title, dPrice, img, url));
         }
         
         return result;
