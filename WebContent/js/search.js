@@ -56,7 +56,7 @@ $("#search-form").submit(function(event) {
             data:{query:query, size:size, source:"Easy"},
             success:function(data) { NProgress.inc(); }}),
         $.ajax({type:"GET", url:url, dataType:"jsonp",
-            data:{query:query, size:size, source:"EBayi"},
+            data:{query:query, size:size, source:"EBay"},
             success:function(data) { NProgress.inc(); }}),
         $.ajax({type:"GET", url:url, dataType:"jsonp",
             data:{query:query, size:size, source:"Qoo10"},
@@ -77,19 +77,20 @@ $("#search-form").submit(function(event) {
         var output = '';
         if (list != undefined && list.length != 0) {
             list.sort(SortByPrice);
-            for (var i = 0; i < list.length; i += 4) {
-                output += '<div class="row">';
-                for (var j = 0; i + j < list.length && j < 4; j++) {
-                    var title = (list[i+j].title.length < 65) 
+            for (var i = 0; i < list.length; i += 5) {
+                output += '<div class="row-fluid-5">';
+                for (var j = 0; i + j < list.length && j < 5; j++) {
+                    var title = (list[i+j].title.length < 45) 
                             ? list[i+j].title 
-                            : list[i+j].title.substring(0, 60) + "...";
-                    output += '<div class="col-lg-3">'
+                            : list[i+j].title.substring(0, 40) + "...";
+                    output += '<div class="span2">'
                            + '  <a href="' + list[i+j].url + '" target="_blank">'
                            + '    <div class="panel panel-default">'
                            + '      <div class="panel-body">'
                            + '        <div>'
-                           + '          <div class="pull-left source">' + list[i+j].source + '</div>'
+                           + '          <div class="source">' + list[i+j].source
                            + '          <div class="pull-right price">RM ' + list[i+j].price.toFixed(2) + '</div>'
+                           + '          </div>'
                            + '        </div>'
                            + '        <div class="margin1">'
                            + '          <img src="' + list[i+j].img + '" style="width:100%;height:100%">'

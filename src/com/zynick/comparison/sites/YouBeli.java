@@ -48,8 +48,9 @@ public class YouBeli implements Website {
                     
                     Elements specialPriceE = productE.select("span.products_special_price");
                     String price = (specialPriceE.size() != 0) ? 
-                            specialPriceE.first().text().substring(3) :
-                            productE.child(3).text().substring(3);
+                            specialPriceE.first().text() :
+                            productE.child(3).text();
+                    price = price.substring(3).replaceAll(",", "");
                     double dPrice = Double.parseDouble(price);
                     
                     result.add(new Item("YouBeli", title, dPrice, img, url));

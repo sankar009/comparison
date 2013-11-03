@@ -37,15 +37,19 @@ public class IPMart implements Website {
             int colSize = rowS.get(i+1).children().size();
             for (int j = 1; j <= colSize; j += 2) {
                 
-                if (count>= size)
+                if (count >= size)
                     break loop;
+                
+                Element divE = rowS.get(i+3).child(j-1).child(0);  // "tr > td > div"
+                if (divE.children().size() < 2)
+                    continue;  // item out of stock
                 
                 Element aE = rowS.get(i+1).child(j-1).child(0) // "tr > td > div"
                                  .child(1).child(0).child(0); // "> center > div > a"
                 String url = aE.attr("href");
                 String img = aE.child(0).attr("src");
                 String title = rowS.get(i+2).child(j-1).child(1).child(0).text(); // "tr > td > div > a"
-                String price = rowS.get(i+3).child(j-1).child(0).child(2).child(0).text(); // "tr > td > div > div > b"
+                String price = divE.child(2).child(0).text(); // "div > b"
                 price = price.substring(3).replaceAll(",", "");
                 double dPrice = Double.parseDouble(price);
                 

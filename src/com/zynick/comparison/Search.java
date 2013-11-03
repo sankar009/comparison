@@ -56,6 +56,7 @@ public class Search extends HttpServlet {
         try {
             return (Website) Class.forName("com.zynick.comparison.sites." + source).newInstance();
         } catch (Exception ex) {
+            System.out.println("Source " + source + " doesn't exist.");
             return null;
         }
     }
