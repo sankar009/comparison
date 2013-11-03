@@ -23,6 +23,18 @@ public class WebsiteTest {
     public static final int SIZE = 3;
 
     @Test
+    public void testEasy() throws Exception {
+        List<Item> list = new Easy().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
+    }
+    
+    @Test
+    public void testEBay() throws Exception {
+        List<Item> list = new EBay().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
+    }
+    
+    @Test
     public void testExpansys() throws Exception {
         List<Item> list = new Expansys().parse(QUERY, SIZE);
         assertTrue(validateUrlAndImg(list));
@@ -49,6 +61,12 @@ public class WebsiteTest {
     @Test
     public void testMobileMegamall() throws Exception {
         List<Item> list = new MobileMegamall().parse(QUERY, SIZE);
+        assertTrue(validateUrlAndImg(list));
+    }
+
+    @Test
+    public void testQoo10() throws Exception {
+        List<Item> list = new Qoo10().parse(QUERY, SIZE);
         assertTrue(validateUrlAndImg(list));
     }
 

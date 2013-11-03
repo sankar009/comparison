@@ -51,17 +51,27 @@ $("#search-form").submit(function(event) {
             success:function(data) { NProgress.inc(); }}),
         $.ajax({type:"GET", url:url, dataType:"jsonp",
             data:{query:query, size:size, source:"Shashinki"},
+            success:function(data) { NProgress.inc(); }}),
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"Easy"},
+            success:function(data) { NProgress.inc(); }}),
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"EBayi"},
+            success:function(data) { NProgress.inc(); }}),
+        $.ajax({type:"GET", url:url, dataType:"jsonp",
+            data:{query:query, size:size, source:"Qoo10"},
             success:function(data) { NProgress.inc(); }})
 
     ).done(function(lazada, lelong, rakuten, superbuy, zalora, 
                     expansys, mmegamall, ipmart, youbeli, sengheng,
-                    retrons, shashinki) {
+                    retrons, shashinki, easy, ebay, qoo10) {
         
         // combine data
         var list = lazada[0].concat(lelong[0]).concat(rakuten[0])
                   .concat(superbuy[0]).concat(zalora[0]).concat(expansys[0])
                   .concat(mmegamall[0]).concat(ipmart[0]).concat(youbeli[0])
-                  .concat(sengheng[0]).concat(retrons[0]).concat(shashinki[0]);
+                  .concat(sengheng[0]).concat(retrons[0]).concat(shashinki[0])
+                  .concat(easy[0]).concat(ebay[0]).concat(qoo10[0]);
         
         // generating output to put into result div
         var output = '';
