@@ -12,7 +12,6 @@ import org.jsoup.select.Elements;
 import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
-// parsing code works as of 2013-07-06
 public class Mudah implements Website {
     
     /**

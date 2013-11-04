@@ -12,7 +12,6 @@ import org.jsoup.select.Elements;
 import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
-// parsing code works as of 2013-07-06
 public class Lelong implements Website {
     
     @Override
@@ -23,30 +22,34 @@ public class Lelong implements Website {
                             .userAgent(Constant.HTTP_USER_AGENT) 
                             .timeout(Constant.HTTP_TIMEOUT).get();
         
-        Element table = doc.getElementById("ListingTable");
-        Elements imgListS = table.getElementsByClass("listimage");
-        Elements titleListS = table.getElementsByClass("ListNorm");
-        Elements priceListS = table.getElementsByClass("ListPrice");
-        if (priceListS.size() == 0)
-            priceListS = table.getElementsByClass("ListPriceBlack");
-        
-        // grab the list
-        size = (size < imgListS.size()) ? size : imgListS.size(); // size or listS.size, which ever is smaller
         ArrayList<Item> result = new ArrayList<Item> (size);
-        for (int i = 0; i < size; i++) {
-            String img = imgListS.get(i).getElementsByTag("img").get(0).attr("data-original");
-            img = img.substring(2); // remove "//"
-            img = "http://" + img;
-            Element aE = titleListS.get(i).getElementsByTag("a").first();
-            String title = aE.attr("title");
-            String price = priceListS.get(i).text().substring(3).replaceAll(",", "");
+        
+        Elements rowS = doc.select("div#divProductListing > table > tbody > tr");
+        int count = 0;
+        
+        for (Element row : rowS) {
+            if (count >= size)
+                break;
+            
+            if (row.children().size() < 6)
+                continue;  // not a valid item row
+            
+            String price = row.child(2).child(0).text();
+            if (!price.startsWith("RM"))
+                continue;  // item no price displayed
+            
+            price = price.substring(price.indexOf(' ') + 1).replaceAll(",", "");
             double dPrice = Double.parseDouble(price);
-            String url = aE.attr("href"); 
+            
+            Element aE = row.child(0).child(0).child(0);  // "tr > td > div.listimage > a
+            String url = aE.attr("href");
+            String title = aE.attr("title");
+            String img = "http:" + aE.child(0).attr("data-original");
             
             result.add(new Item("Lelong", title, dPrice, img, url));
+            count++;
         }
-        
+
         return result;
     }
-
 }
