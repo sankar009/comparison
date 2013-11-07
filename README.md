@@ -15,21 +15,21 @@ Saves time and energy, all in one place.
 ## Where do you get all your sources?
 
 The list of local (Malaysia) online stores are:
- * Easy
- * Ebay
- * Expansys
- * IPMart
- * Lazada
- * Lelong
- * MobileMegamall
- * Qoo10
- * Rakuten
- * Retrons
- * SengHeng
- * Shashinki
- * Superbuy
- * YouBeli
- * Zalora
+ * Easy http://www.easy.my
+ * Ebay http://www.ebay.com.my
+ * Expansys http://www.expansys.my
+ * IPMart http://www.ipmart.com.my
+ * Lazada http://www.lazada.com.my
+ * Lelong http://www.lelong.com.my
+ * MobileMegamall http://mobilemegamall.com
+ * Qoo10 http://qoo10.my
+ * Rakuten http://www.rakuten.com.my
+ * Retrons http://www.retrons.com
+ * SengHeng http://www.senheng.com.my
+ * Shashinki http://shashinki.com
+ * Superbuy http://www.superbuy.my
+ * YouBeli http://www.youbeli.com
+ * Zalora http://www.zalora.com.my
 
 ## Why the result isn't really compelling?
 
