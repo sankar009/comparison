@@ -80,9 +80,9 @@ $("#search-form").submit(function(event) {
             for (var i = 0; i < list.length; i += 5) {
                 output += '<div class="row-fluid-5">';
                 for (var j = 0; i + j < list.length && j < 5; j++) {
-                    var title = (list[i+j].title.length < 45) 
+                    var title = (list[i+j].title.length < 50) 
                             ? list[i+j].title 
-                            : list[i+j].title.substring(0, 40) + "...";
+                            : list[i+j].title.substring(0, 45) + "...";
                     output += '<div class="span2">'
                            + '  <a href="' + list[i+j].url + '" target="_blank">'
                            + '    <div class="panel panel-default">'
