@@ -43,17 +43,13 @@ It's easy to add your site onto Comparison. Fork this repo and add your code in 
 
 ## How does this work?
 
-Comparison uses [Web Scraping] [1] technique to crawl over local online sites, gather all result and sort them by price, allowing the cheapest item to be listed on top among others.
+Comparison uses Web Scraping (http://en.wikipedia.org/wiki/Web_scraping) technique to crawl over local online sites, gather all result and sort them by price, allowing the cheapest item to be listed on top among others.
 
 ## What kind of technology is used?
 
-[Bootstrap] [2] + Javascript ([JQuery] [3]) as Front End, and Java Servlet as Back End.
+Bootstrap + Javascript (JQuery) as Front End, and Java Servlet as Back End.
 
 
 Hit me up if you have any question. My contact is available at the sidebar.
 
-
- [1] : http://en.wikipedia.org/wiki/Web_scraping    "Web Scraping"
- [2] : http://getbootstrap.com/                     "Bootstrap"
- [3] : http://jquery.com/                           "JQuery"
 
