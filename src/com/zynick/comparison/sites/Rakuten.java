@@ -37,7 +37,7 @@ public class Rakuten implements Website {
                     break loop;
 
                 Element aE = colE.getElementsByTag("a").first();
-                String img = aE.child(0).attr("src");
+                String img = aE.child(0).attr("data-frz-src");
                 String title = colE.select("div.b-fix-2lines a").first().text();
                 String price = colE.select("span.b-text-prime").first().text().replaceAll(",", "");
                 double dPrice = Double.parseDouble(price);

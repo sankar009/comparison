@@ -117,3 +117,4 @@ $("#search-form").submit(function(event) {
         NProgress.done();
     });
 });
+

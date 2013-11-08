@@ -17,35 +17,43 @@
         <!-- my css -->
         <link href="css/style.css" rel="stylesheet">
         
-        <title>Comparison: Compare Online Malaysia Prices In One Place!</title>
+        <title>Comparison: Compare Malaysia Online Stores In One Place!</title>
     </head>
     <body>
         <div class="container">
-            <div class="top" ></div>
+            <div class="top"></div>
             <div class="jumbotron">
-                <div class="container">
-                    <h1 class="text-center">Looking for something online?</h1>
-                    <p class="text-center space source">Compare multiple online stores and find the cheapest item in Malaysia!</p>
-                    <form id="search-form" action="search" role="form">
-                        <div class="input-group">
-                            <input id="query" type="text" class="form-control" placeholder="Enter your produt here">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">Search</button>
-                            </span>
+                <div class="container text-center">
+                    <h1>Looking for something online?</h1>
+                    <p class="source">Compare multiple online stores and find the cheapest item in Malaysia!</p>
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <form id="search-form" action="search" role="form">
+                                <div class="input-group">
+                                    <input id="query" type="text" class="form-control" placeholder="Enter the product you're looking for">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">Search</button>
+                                    </span>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                    <!-- <p class="space source pull-right">* only for Malaysia Sites</p> -->
+                    </div>
                 </div>
             </div>
             <div id="result">
-                <!-- the result will be overwritten here -->
+                <!-- result will be overwritten here -->
             </div>
             <div id="footer" class="footer-space">
-                <div class="container">
-                    <p class="text-center text-muted credit">
+                <div class="container text-center">
+                    <div>
                         Comparison. A Side Project by <a href="http://zynick.com" target="_blank">zynick</a>.
                         And it's <a href="https://github.com/zynick/comparison" target="_blank">Open Source</a>.
-                    </p>
+                    </div>
+                    <div>
+                        <a href="https://www.facebook.com/zynick.blog" target="_blank"><img src="icon/social-facebook-outline.png" style="height:25px;width:25px" /></a>&nbsp;
+                        <a href="https://twitter.com/zynick" target="_blank"><img src="icon/social-twitter-outline.png" style="height:25px;width:25px" /></a>&nbsp;
+                        <a href="https://github.com/zynick/comparison" target="_blank"><img src="icon/social-github-outline.png" style="height:25px;width:25px" /></a>
+                    </div>
                 </div>
             </div>
         </div>
