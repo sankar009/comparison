@@ -12,6 +12,10 @@ As chinese saying goes "Shop and compare items among 3 stores before making a pu
 
 Saves time and energy, all in one place.
 
+## How does this work?
+
+Comparison uses [Web Scraping](http://en.wikipedia.org/wiki/Web_scraping) technique to crawl over local online sites, gather all result and sort them by price, allowing the cheapest item to be listed on top among others.
+
 ## Where do you get all your sources?
 
 The list of local (Malaysia) online stores are:
@@ -40,10 +44,6 @@ If any of them return non-related item based on the keyword user search for, Com
 ## Why my online store isn't listed?
 
 It's easy to add your site onto Comparison. Fork this repo and add your code in [com.zynick.comparison.sites](https://github.com/zynick/comparison/tree/master/src/com/zynick/comparison/sites) package, and I'll merge your code onto the site.
-
-## How does this work?
-
-Comparison uses [Web Scraping](http://en.wikipedia.org/wiki/Web_scraping) technique to crawl over local online sites, gather all result and sort them by price, allowing the cheapest item to be listed on top among others.
 
 ## What kind of technology is used?
 
