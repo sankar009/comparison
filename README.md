@@ -48,6 +48,3 @@ It's easy to add your site onto Comparison. Fork this repo and add your code in 
 ## What kind of technology is used?
 
 Javascript as Front End, and Java Servlet as Back End.
-
-
-Hit me up if you have any question.
