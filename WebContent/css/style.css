@@ -105,3 +105,8 @@ a {
 .navbar-inner {
     background:transparent;
 }
+
+.icon {
+    height:25px;
+    width:25px;
+}
