@@ -12,34 +12,34 @@ import org.jsoup.select.Elements;
 import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
-public class EBay implements Website {
+public class SengHeng implements Website {
     
-    @Override
     public List<Item> parse(String query, int size) throws IOException {
         
         // request for a page
-        Document doc = Jsoup.connect("http://www.ebay.com.my/sch/i.html?LH_BIN=1&_nkw=" + query)
+        Document doc = Jsoup.connect("http://www.senheng.com.my/search?search_query=" + query)
                             .userAgent(Constant.HTTP_USER_AGENT) 
                             .timeout(Constant.HTTP_TIMEOUT).get();
 
         ArrayList<Item> result = new ArrayList<Item>(size);
+        int count = 0;
         
-        Elements itemS = doc.select("div#ResultSetItems > table");
-        for (int i = 0; i < size && i < itemS.size(); i++) {
-            Element item = itemS.get(i).child(0).child(0);  // "table > tbody > tr"
-
-            Element aE = item.child(0).child(0).child(0).child(0).child(1);  // "tr > td > div > div.picW > div > a"
-            String url = aE.attr("href");
-            String img = aE.child(0).attr("src");
-            String title = aE.child(0).attr("alt");
+        Elements listS = doc.select("li.ajax_block_product");
+        for (Element list : listS) {
+            if (count >= size)
+                break;
             
-            String price = item.child(3).child(0).child(0).text();  // "tr > td > div > div"
-            price = price.substring(price.lastIndexOf(' '));
+            Element aE = list.child(1).child(0); // "div.center_block > a"
+            String url = aE.attr("href");
+            String title = aE.attr("title");
+            String img = aE.child(0).attr("src");
+            String price = list.select("span.price").first().text().substring(2).replaceAll(",", "");
             double dPrice = Double.parseDouble(price);
             
-            result.add(new Item("EBay", title, dPrice, img, url));
+            result.add(new Item("SengHeng", title, dPrice, img, url));
+            count++;
         }
-
+        
         return result;
     }
 }

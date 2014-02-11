@@ -12,33 +12,31 @@ import org.jsoup.select.Elements;
 import com.zynick.comparison.Constant;
 import com.zynick.comparison.Item;
 
-public class Easy implements Website {
+public class EBay implements Website {
     
-    @Override
     public List<Item> parse(String query, int size) throws IOException {
         
         // request for a page
-        Document doc = Jsoup.connect("http://www.easy.my/search.html?q=" + query)
+        Document doc = Jsoup.connect("http://www.ebay.com.my/sch/i.html?LH_BIN=1&_nkw=" + query)
                             .userAgent(Constant.HTTP_USER_AGENT) 
                             .timeout(Constant.HTTP_TIMEOUT).get();
 
         ArrayList<Item> result = new ArrayList<Item>(size);
         
-        Elements itemS = doc.select("div#category-maindiv > ul > li");
-        
+        Elements itemS = doc.select("div#ResultSetItems > table");
         for (int i = 0; i < size && i < itemS.size(); i++) {
-            Element aE = itemS.get(i).child(0);
-            String url = "http://www.easy.my" + aE.attr("href");
-            String img = aE.child(0).attr("data-original");
-            aE = itemS.get(i).child(1);
-            String price = aE.child(0).html();
-            if (price.indexOf('<') != -1)
-                price = price.substring(0, price.indexOf(' '));
-            price = price.substring(2);
-            double dPrice = Double.parseDouble(price);
-            String title = aE.child(1).text();
+            Element item = itemS.get(i).child(0).child(0);  // "table > tbody > tr"
+
+            Element aE = item.child(0).child(0).child(0).child(0).child(1);  // "tr > td > div > div.picW > div > a"
+            String url = aE.attr("href");
+            String img = aE.child(0).attr("src");
+            String title = aE.child(0).attr("alt");
             
-            result.add(new Item("Easy", title, dPrice, img, url));
+            String price = item.child(3).child(0).child(0).text();  // "tr > td > div > div"
+            price = price.substring(price.lastIndexOf(' '));
+            double dPrice = Double.parseDouble(price);
+            
+            result.add(new Item("EBay", title, dPrice, img, url));
         }
 
         return result;

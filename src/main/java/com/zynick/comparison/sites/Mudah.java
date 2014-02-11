@@ -17,7 +17,6 @@ public class Mudah implements Website {
     /**
      * Mudah is not standardized, result will be messy if crawl them
      */
-    @Override
     public List<Item> parse(String query, int size) throws IOException {
 
         // request for a page

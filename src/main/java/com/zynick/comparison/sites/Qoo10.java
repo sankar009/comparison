@@ -14,7 +14,6 @@ import com.zynick.comparison.Item;
 
 public class Qoo10 implements Website {
     
-    @Override
     public List<Item> parse(String query, int size) throws IOException {
         
         // request for a page

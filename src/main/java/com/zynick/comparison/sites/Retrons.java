@@ -14,7 +14,6 @@ import com.zynick.comparison.Item;
 
 public class Retrons implements Website {
     
-    @Override
     public List<Item> parse(String query, int size) throws IOException {
         
         // request for a page
